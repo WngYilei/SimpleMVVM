@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xl.common.tool.ktx.dp
 import com.xl.simplemvvm.bean.ArticleBean
+import com.xl.simplemvvm.bean.BannerImg
 import com.xl.simplemvvm.databinding.MainFragmentBinding
 import com.xl.simplemvvm.intent.MainState
 import com.xl.simplemvvm.item.ArticleItem
@@ -77,18 +78,21 @@ class MainFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infl
                     viewBinding.smartRefresh.finishRefresh()
                     viewBinding.smartRefresh.finishLoadMore()
                 }
-                is MainState.Banners -> {
-                    Log.e(TAG, "获取首页banner数据")
-                }
                 is MainState.Body -> {
-                    Log.e(TAG, "获取首页文章数据")
-                    val items = mutableListOf<ArticleItem>()
-                    val data = it.data as ArticleBean
-                    data.datas.forEach {
-                        items.add(ArticleItem(it))
-                    }
-                    data.datas.size.let {
-                        recyclerAdapter.submitList(it, items)
+                    when (it.data) {
+                        is ArticleBean -> {
+                            val items = mutableListOf<ArticleItem>()
+                            val data = it.data as ArticleBean
+                            data.datas.forEach {
+                                items.add(ArticleItem(it))
+                            }
+                            data.datas.size.let {
+                                recyclerAdapter.submitList(it, items)
+                            }
+                        }
+                        is BannerImg -> {
+
+                        }
                     }
                 }
                 else -> {
