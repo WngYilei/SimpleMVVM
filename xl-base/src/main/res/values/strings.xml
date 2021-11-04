@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SimpleMVVM</string>
+    <string name="string_empty">暂无数据</string>
+    <string name="string_error">发生错误了</string>
 </resources>

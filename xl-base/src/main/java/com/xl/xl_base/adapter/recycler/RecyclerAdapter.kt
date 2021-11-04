@@ -1,10 +1,13 @@
 package com.xl.xl_base.adapter.recycler
 
+import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.IntRange
 import androidx.recyclerview.widget.*
 import com.xl.myapplication.adapter.DiffConfig
+import com.xl.xl_base.adapter.item.DefaultEmptyCell
+import com.xl.xl_base.adapter.item.DefaultLoadingCell
 import com.xl.xl_base.adapter.item.ItemCell
 
 /**
@@ -50,7 +53,7 @@ class RecyclerAdapter(private val support: RecyclerSupport) : RecyclerView.Adapt
      * @param callback 加载完成回调
      */
     fun submitLoadingCell(
-        loadingCell: ItemCell,
+        loadingCell: ItemCell = DefaultLoadingCell(),
         callback: () -> Unit = {}
     ) {
         differ.submitList(mutableListOf(loadingCell)) {
@@ -86,17 +89,17 @@ class RecyclerAdapter(private val support: RecyclerSupport) : RecyclerView.Adapt
      *
      */
     fun submitList(
-        @IntRange(from = 1) pageIndex: Int?,
+        @IntRange(from = 1) pageIndex: Int,
         list: List<ItemCell>,
-//        emptyCell: ItemCell ,
+        emptyCell: ItemCell = DefaultEmptyCell(),
         callback: () -> Unit = {}
     ) {
         when (pageIndex) {
             1 -> {
                 if (list.isEmpty()) {
-//                    differ.submitList(mutableListOf(emptyCell)) {
-//                        callback.invoke()
-//                    }
+                    differ.submitList(mutableListOf(emptyCell)) {
+                        callback.invoke()
+                    }
                 } else {
                     differ.submitList(list) {
                         callback.invoke()
@@ -104,6 +107,7 @@ class RecyclerAdapter(private val support: RecyclerSupport) : RecyclerView.Adapt
                 }
             }
             else -> {
+
                 val temp = mutableListOf<ItemCell>()
                 temp.addAll(differ.currentList)
                 if (list.isEmpty()) {

@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.annotation.IntRange
 import androidx.recyclerview.widget.*
 import com.xl.myapplication.adapter.DiffConfig
+import com.xl.xl_base.adapter.item.DefaultEmptyCell
+import com.xl.xl_base.adapter.item.DefaultLoadingCell
 import com.xl.xl_base.adapter.item.ItemCell
 
 /**
@@ -50,62 +52,89 @@ class StableAdapter(private val support: RecyclerSupport) : RecyclerView.Adapter
     }
 
     /**
-     * 按照范围提交数据
-     * @param position 局部更新的位置，范围>=0
+     * 提交加载页面cell
+     * @param loadingCell 加载页码Cell
+     * @param callback 加载完成回调
+     */
+    fun submitLoadingCell(
+        loadingCell: ItemCell = DefaultLoadingCell(),
+    ) {
+        differ.submitList(mutableListOf(loadingCell))
+    }
+
+    /**
+     * 提交错误页面cell
+     * @param pageIndex 页码
+     * @param errorCell 错误页码Cell
+     * @param callback 加载完成回调
+     */
+    fun submitErrorCell(
+        errorCell: ItemCell = DefaultEmptyCell(),
+    ) {
+        differ.submitList(mutableListOf(errorCell))
+    }
+
+    /**
+     * 提交列表数据
+     * @param pageIndex 页码
+     * @param list 列表数据
+     * @param emptyCell 空页面
+     * @param callback 加载完成回调
+     *
      */
     fun submitList(
-        @IntRange(from = 0) position: Int, temp: List<ItemCell>,
+        @IntRange(from = 1) pageIndex: Int,
+        list: List<ItemCell>,
+        isRefresh: Boolean = false,
+        emptyCell: ItemCell = DefaultEmptyCell(),
         callback: () -> Unit = {}
     ) {
-        if (!keyList.contains(position)) {
-            keyList.add(position)
-        }
-        sparseArray.put(position, temp)
-        val resultList = mutableListOf<ItemCell>()
-        keyList.sorted().forEach { key ->
-            resultList.addAll(sparseArray[key, mutableListOf()])
-        }
-        differ.submitList(resultList, callback)
-    }
-
-    /**
-     * 按照范围提交数据
-     * @param position 局部更新的位置，范围>=0
-     */
-    fun submitList(
-        @IntRange(from = 0) position: Int, itemCell: ItemCell,
-        callback: () -> Unit = {}
-    ) {
-        val temp = listOf(itemCell)
-        submitList(position, temp, callback)
-    }
-
-    /**
-     * 全量更新数据
-     */
-    fun submitList(temp: List<ItemCell>, callback: () -> Unit = {}) {
-        keyList.clear()
-        sparseArray.clear()
-        differ.submitList(temp, callback)
-    }
-
-    /**
-     * 按照范围提交数据
-     * @param position 局部更新的位置，范围>=0
-     * @param clear 是否清空之前的列表
-     */
-    fun submitList(
-        @IntRange(from = 0) position: Int, temp: List<ItemCell>,
-        clear: Boolean = false, callback: () -> Unit = {}
-    ) {
-        if (clear) {
+        if (isRefresh) {
             keyList.clear()
             sparseArray.clear()
             submitList(listOf()) {
-                submitList(position, temp, callback)
+                submitList(pageIndex, list)
             }
-        } else {
-            submitList(position, temp, callback)
+            return
         }
+        when (pageIndex) {
+            1 -> {
+                if (list.isEmpty()) {
+                    differ.submitList(mutableListOf(emptyCell)) {
+                        callback.invoke()
+                    }
+                } else {
+
+                    if (!keyList.contains(pageIndex)) {
+                        keyList.add(pageIndex)
+                    }
+                    sparseArray.put(pageIndex, list)
+                    val resultList = mutableListOf<ItemCell>()
+                    resultList.addAll(differ.currentList)
+                    keyList.sorted().forEach { key ->
+                        resultList.addAll(sparseArray[key, mutableListOf()])
+                    }
+                    differ.submitList(resultList, callback)
+                }
+            }
+            else -> {
+                if (!keyList.contains(pageIndex)) {
+                    keyList.add(pageIndex)
+                }
+                sparseArray.put(pageIndex, list)
+                val resultList = mutableListOf<ItemCell>()
+                resultList.addAll(differ.currentList)
+                keyList.sorted().forEach { key ->
+                    resultList.addAll(sparseArray[key, mutableListOf()])
+                }
+                differ.submitList(resultList, callback)
+            }
+        }
+    }
+
+    private fun submitList(temp: List<ItemCell>, callback: () -> Unit = {}) {
+        keyList.clear()
+        sparseArray.clear()
+        differ.submitList(temp, callback)
     }
 }
