@@ -8,7 +8,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.constant.RefreshState
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
-import com.xl.common.tool.ktx.isClass
 import com.xl.xl_base.adapter.vb.VbItemCell
 
 /**

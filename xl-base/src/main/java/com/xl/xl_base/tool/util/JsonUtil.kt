@@ -1,9 +1,8 @@
-package com.xl.common.tool.util
+package com.xl.xl_base.tool.util
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import com.centanet.android.ktx.json.NullJsonFactory
-import com.xl.common.tool.ktx.notEmpty
+import com.xl.xl_base.tool.ktx.notEmpty
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -21,7 +20,6 @@ object JsonUtil {
      */
     val moShi: Moshi
         get() = Moshi.Builder()
-            .add(NullJsonFactory.STANDARD)
             .build()
 
     fun throwException(error: String?) {
@@ -155,22 +153,6 @@ object JsonUtil {
     }
 
     /**
-     * 对象 转 字符串
-     */
-    inline fun <reified T> toJson(t: T?): String {
-        return if (List::class.java.isAssignableFrom(T::class.java)) {
-            toJson(t as List<*>)
-        } else {
-            try {
-                moShi.adapter(T::class.java).toJson(t)
-            } catch (e: Exception) {
-                e.printStackTrace()
-                ""
-            }
-        }
-    }
-
-    /**
      * 数组 转 字符串
      */
     inline fun <reified T> toJson(list: List<T>?): String {
@@ -182,22 +164,5 @@ object JsonUtil {
             e.printStackTrace()
             ""
         }
-    }
-
-    /**
-     * Bundle 转 字符串
-     */
-    fun toJson(bundle: Bundle?): String {
-        val map = mutableMapOf<String, Any?>()
-        if (bundle != null) {
-            try {
-                for (key in bundle.keySet()) {
-                    map[key] = bundle.get(key)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-        return toJson(map)
     }
 }

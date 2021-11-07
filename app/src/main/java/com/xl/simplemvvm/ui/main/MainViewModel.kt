@@ -1,9 +1,9 @@
 package com.xl.simplemvvm.ui.main
 
 import com.xl.simplemvvm.bean.ArticleBean
-import com.xl.simplemvvm.intent.MainState
-import com.xl.simplemvvm.intent.launchFlowRequest
 import com.xl.xl_base.base.ReduxViewModel
+import com.xl.xl_base.tool.ktx.MainState
+import com.xl.xl_base.tool.ktx.launchFlowRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

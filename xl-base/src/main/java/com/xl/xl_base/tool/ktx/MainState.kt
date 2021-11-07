@@ -1,6 +1,5 @@
-package com.xl.simplemvvm.intent
+package com.xl.xl_base.tool.ktx
 sealed class MainState {
-
     object Idle : MainState()
     object Loading : MainState()
     object Complete : MainState()

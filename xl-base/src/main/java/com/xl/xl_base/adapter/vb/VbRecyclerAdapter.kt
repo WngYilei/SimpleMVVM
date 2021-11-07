@@ -3,7 +3,7 @@ package com.xl.xl_base.adapter.vb
 import android.view.ViewGroup
 import androidx.annotation.IntRange
 import androidx.recyclerview.widget.*
-import com.xl.myapplication.adapter.DiffConfig
+import com.xl.xl_base.adapter.DiffConfig
 import com.xl.xl_base.adapter.recycler.RecyclerSupport
 
 /**

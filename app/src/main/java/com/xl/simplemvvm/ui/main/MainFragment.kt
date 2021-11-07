@@ -4,15 +4,15 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xl.common.tool.ktx.dp
+import com.xl.xl_base.tool.ktx.dp
 import com.xl.simplemvvm.bean.ArticleBean
 import com.xl.simplemvvm.bean.BannerImg
 import com.xl.simplemvvm.databinding.MainFragmentBinding
-import com.xl.simplemvvm.intent.MainState
 import com.xl.simplemvvm.item.ArticleItem
 import com.xl.xl_base.adapter.image.ImageLoader
 import com.xl.xl_base.adapter.recycler.*
 import com.xl.xl_base.base.BaseFragment
+import com.xl.xl_base.tool.ktx.MainState
 import com.xl.xl_base.tool.ktx.collectFlow
 import com.xl.xl_base.tool.ktx.onSmartRefreshCallback
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,7 +75,7 @@ class MainFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infl
                     when (it.data) {
                         is ArticleBean -> {
                             val items = mutableListOf<ArticleItem>()
-                            val data = it.data
+                            val data = it.data as ArticleBean
                             data.datas.forEach {
                                 items.add(ArticleItem(it))
                             }

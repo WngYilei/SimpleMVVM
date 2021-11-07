@@ -1,4 +1,4 @@
-package com.xl.common.tool.util
+package com.xl.xl_base.tool.util
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable

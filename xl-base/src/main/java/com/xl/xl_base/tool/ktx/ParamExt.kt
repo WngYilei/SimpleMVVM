@@ -1,4 +1,4 @@
-package com.xl.common.tool.ktx
+package com.xl.xl_base.tool.ktx
 
 import android.os.Bundle
 import androidx.core.os.bundleOf

@@ -1,4 +1,4 @@
-package com.xl.common.tool.ktx
+package com.xl.xl_base.tool.ktx
 
 /**
  * 描述:Collection 扩展

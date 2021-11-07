@@ -1,4 +1,4 @@
-package com.xl.myapplication.adapter
+package com.xl.xl_base.adapter
 
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil

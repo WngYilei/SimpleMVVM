@@ -1,4 +1,4 @@
-package com.xl.simplemvvm.intent
+package com.xl.xl_base.tool.ktx
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
