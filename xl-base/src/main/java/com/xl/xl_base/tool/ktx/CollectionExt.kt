@@ -1,11 +1,5 @@
 package com.xl.xl_base.tool.ktx
 
-/**
- * 描述:Collection 扩展
- *
- * author zys
- * create by 2020/5/28
- */
 fun <E> MutableList<E>.addIndex(index: Int, element: E) {
     if (index + 1 > size) {
         add(element)

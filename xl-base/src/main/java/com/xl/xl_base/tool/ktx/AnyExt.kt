@@ -1,12 +1,6 @@
 package com.xl.xl_base.tool.ktx
 
 /**
- * 描述:
- *
- * @author zys
- * create by 2020/04/10
- */
-/**
  * 用于is判断
  */
 inline fun <reified R : Any> Any?.isClass(crossinline block: R.() -> Unit = {}): R? {

@@ -9,9 +9,6 @@ import com.scwang.smartrefresh.layout.internal.InternalAbstract
 import com.xl.xl_base.R
 import kotlinx.android.synthetic.main.lottie_footer.view.*
 
-/**
- * Created by shengl on 2019-04-18.
- */
 class LottieFooter @JvmOverloads constructor(
     context: Context?,
     attrs: AttributeSet? = null,

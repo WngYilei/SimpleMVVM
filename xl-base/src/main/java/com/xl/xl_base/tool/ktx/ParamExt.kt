@@ -4,14 +4,6 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 
 /**
- * @Description:
- * @ProjectName: salehouse-xf-sz
- * @FileName: ParamExt.kt
- * @Author: wbzhouke
- * @CreateDate: 2020/4/20 10:04
- */
-
-/**
  * 将map转换成Bundle
  */
 fun convertToBundle(source: Map<String, Any>): Bundle {

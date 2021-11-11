@@ -10,12 +10,12 @@ import kotlinx.coroutines.launch
 
 class FlowRequest<T> {
     private lateinit var loader: suspend () -> Flow<Response<T>>
-    private var responseResult: ((state: MainState) -> Unit)? = null
+    private var responseResult: ((state: State) -> Unit)? = null
     infix fun loader(block: suspend () -> Flow<Response<T>>) {
         loader = block
     }
 
-    infix fun onResult(block: (MainState) -> Unit) {
+    infix fun onResult(block: (State) -> Unit) {
         responseResult = block
     }
 
@@ -23,17 +23,17 @@ class FlowRequest<T> {
         scope.launch {
             try {
                 loader().collect {
-                    responseResult?.invoke(MainState.Loading)
+                    responseResult?.invoke(State.Loading)
                     if (it.errorCode == 0) {
-                        responseResult?.invoke(MainState.Body(it.data))
+                        responseResult?.invoke(State.Body(it.data))
                     } else {
-                        responseResult?.invoke(MainState.Error(it.errorMsg))
+                        responseResult?.invoke(State.Error(it.errorMsg))
                     }
                 }
             } catch (e: Exception) {
-                responseResult?.invoke(MainState.Error(e.message))
+                responseResult?.invoke(State.Error(e.message))
             } finally {
-                responseResult?.invoke(MainState.Complete)
+                responseResult?.invoke(State.Complete)
             }
         }
     }

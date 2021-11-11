@@ -10,9 +10,6 @@ import org.json.JSONObject
 
 /**
  * 描述: Json工具类
- *
- * author zys
- * create by 2020/12/14
  */
 object JsonUtil {
 

@@ -1,7 +1,6 @@
 package com.xl.xl_base.adapter.item
 
 import android.view.View
-import com.centanet.android.ktx.debounceClick
 import com.xl.xl_base.R
 import com.xl.xl_base.adapter.recycler.RecyclerSupport
 import com.xl.xl_base.adapter.recycler.RecyclerVH
@@ -24,7 +23,7 @@ class DefaultErrorNetCell : ItemCell {
 class DefaultErrorNetVH(itemView: View, support: RecyclerSupport) : RecyclerVH(itemView, support) {
 
     init {
-        itemView.debounceClick {
+        itemView.setOnClickListener {
             support.retry?.invoke()
         }
     }

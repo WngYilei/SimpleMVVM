@@ -70,10 +70,3 @@ data class Tag(
     val name: String,
     val url: String
 )
-
-fun <T> StateFlow<T>.toCollect(lifecycleOwner: LifecycleOwner, action: (T) -> Unit) =
-    lifecycleOwner.lifecycleScope.launch {
-        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            collect { T -> action(T) }
-        }
-    }

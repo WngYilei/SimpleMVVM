@@ -7,12 +7,6 @@ import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-/**
- * 描述: 加密工具
- *
- * author zys
- * create by 2021/4/27
- */
 @Suppress("SpellCheckingInspection")
 object EncryptUtil {
 

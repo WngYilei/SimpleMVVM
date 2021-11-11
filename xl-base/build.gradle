@@ -36,9 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    packagingOptions {
-        exclude 'META-INF/*.kotlin_module'
-    }
+
 
     dataBinding {
         enabled = true
@@ -97,9 +95,11 @@ def GROUP = 'com.xl'
 def NEXUS_USERNAME = 'admin'
 def NEXUS_PASSWORD = 'xiaolei521'
 def NEXUS_DESC = 'base'
-def NEXUS_VERSION = "1.0.4"
+def NEXUS_VERSION = "1.0.7"
 
 afterEvaluate {
+
+
     task androidJavadocs(type: Javadoc) {
         options.encoding = "utf-8"
         source = android.sourceSets.main.java.srcDirs

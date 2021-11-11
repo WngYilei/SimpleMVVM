@@ -6,12 +6,7 @@ import android.os.Build
 import android.provider.Settings
 import androidx.fragment.app.FragmentActivity
 
-/**
- * 描述:应用权限设置页面跳转
- *
- * author zys
- * create by 2020/11/27
- */
+
 @Suppress("Unused")
 object PermissionPageUtil {
     const val REQUEST_CODE = 987

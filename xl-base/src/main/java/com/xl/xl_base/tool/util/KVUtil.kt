@@ -3,12 +3,6 @@ package com.xl.xl_base.tool.util
 import android.os.Parcelable
 import com.tencent.mmkv.MMKV
 
-/**
- * 描述: 轻量的键值对存储工具，默认不支持多进程
- *
- * author zys
- * create by 2021/1/18
- */
 object KVUtil {
 
     private val defaultMMKV: MMKV?
