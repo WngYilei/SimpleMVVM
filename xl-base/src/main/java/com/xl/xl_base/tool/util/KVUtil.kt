@@ -1,5 +1,6 @@
 package com.xl.xl_base.tool.util
 
+import android.content.Context
 import android.os.Parcelable
 import com.tencent.mmkv.MMKV
 
@@ -7,6 +8,10 @@ object KVUtil {
 
     private val defaultMMKV: MMKV?
         get() = MMKV.defaultMMKV()
+
+    fun init(context: Context) {
+        MMKV.initialize(context)
+    }
 
     /**
      * 存储键值对

@@ -12,14 +12,14 @@ const val ERROR_NET = -1000
 class Request<T> {
 
     private lateinit var loader: suspend () -> Response<T>
-    private var responseResult: ((Response<T>) -> Unit)? = null
+    private var responseResult: ((T) -> Unit)? = null
     private var responseError: ((Response<T>) -> Unit)? = null
     private var responseComplete: (() -> Unit)? = null
     infix fun loader(block: suspend () -> Response<T>) {
         loader = block
     }
 
-    infix fun onResult(block: (Response<T>) -> Unit) {
+    infix fun onResult(block: (T) -> Unit) {
         responseResult = block
     }
 
@@ -37,7 +37,9 @@ class Request<T> {
                 val response = withContext(IO) {
                     loader()
                 }
-                responseResult?.invoke(response)
+                response.data?.let {
+                    responseResult?.invoke(response.data)
+                }
             } catch (e: Exception) {
                 responseError?.invoke(Response(ERROR_NET, errorMsg = e.message.toString()))
             } finally {
