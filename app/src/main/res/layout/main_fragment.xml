@@ -19,6 +19,7 @@
         android:id="@+id/smartRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.xl.xl_base.widget.LottieHeader

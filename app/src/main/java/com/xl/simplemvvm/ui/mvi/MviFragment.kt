@@ -1,10 +1,11 @@
-package com.xl.simplemvvm.ui.main
+package com.xl.simplemvvm.ui.mvi
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xl.simplemvvm.bean.ArticleBean
 import com.xl.simplemvvm.bean.BannerImg
@@ -18,17 +19,19 @@ import com.xl.xl_base.base.BaseFragment
 import com.xl.xl_base.tool.ktx.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::inflate) {
+class MviFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::inflate) {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = MviFragment()
         private const val TAG = "MainFragment"
     }
 
     private var page = 0
-    private val mainViewModel by viewModels<MainViewModel>()
+    private val mainViewModel by viewModels<MviViewModel>()
     private lateinit var recyclerAdapter: StableAdapter
     override fun onFragmentCreate(savedInstanceState: Bundle?) {
 
@@ -37,15 +40,16 @@ class MainFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infl
         viewBinding.smartRefresh.onSmartRefreshCallback {
             onRefresh {
                 page = 0
-                mainViewModel.getArc(0)
+                mainViewModel.getArtic(0)
             }
             onLoadMore {
                 page += 1
-                mainViewModel.getArc(page)
+                mainViewModel.getArtic(page)
             }
         }
+
         recyclerAdapter = createStableAdapter {
-            imageLoader = ImageLoader(this@MainFragment)
+            imageLoader = ImageLoader(this@MviFragment)
         }
 
         viewBinding.recycle.apply {
@@ -62,42 +66,33 @@ class MainFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infl
 
 
         mainViewModel.state.collectHandlerFlow(this) {
-            loading {
-                Log.e(TAG, "loading: ")
-            }
-            onResult {
-                when (it) {
-                    is ArticleBean -> {
-                        val items = mutableListOf<ArticleItem>()
-                        it.datas.forEach { article ->
-                            items.add(ArticleItem(article))
-                        }
-                        it.datas.size.let { it1 ->
-                            recyclerAdapter.submitList(it1, items, page == 0)
-                        }
+            viewBinding.smartRefresh.finishRefresh()
+            viewBinding.smartRefresh.finishLoadMore()
+            if (!it.refresh) {
+                it.banners.notEmpty {
+                    val items = mutableListOf<TitleItem>()
+                    it.forEach { article ->
+                        items.add(TitleItem(article))
                     }
-                    is ArrayList<*> -> {
-                        val items = mutableListOf<TitleItem>()
-                        it.forEach { any ->
-                            items.add(TitleItem(any as BannerImg))
-                        }
-                        it.size.let {
-                            recyclerAdapter.submitList(it, items, page == 0)
-                        }
+                    it.size.let { it1 ->
+                        recyclerAdapter.submitList(it1, items, page == 0)
+                    }
+                }
+
+                it.articleBean?.let {
+                    val items = mutableListOf<ArticleItem>()
+                    it.datas.forEach { article ->
+                        items.add(ArticleItem(article))
+                    }
+                    it.datas.size.let { it1 ->
+                        recyclerAdapter.submitList(it1, items, page == 0)
                     }
                 }
             }
-            complete {
-                viewBinding.smartRefresh.finishLoadMore()
-                viewBinding.smartRefresh.finishRefresh()
-            }
-            onError {
-                Log.e(TAG, "onError: ")
-            }
         }
 
-
         viewBinding.btn.setOnClickListener {
+//            mainViewModel.getArtic(0)
             startActivity(Intent(context, ComposeActivity::class.java))
         }
     }

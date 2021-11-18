@@ -3,6 +3,7 @@
     package="com.xl.simplemvvm">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -12,7 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleMVVM">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.compose.ComposeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_compose"
+            android:theme="@style/Theme.SimpleMVVM.NoActionBar" />
+        <activity
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
