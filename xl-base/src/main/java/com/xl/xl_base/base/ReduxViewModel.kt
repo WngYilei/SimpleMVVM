@@ -1,11 +1,8 @@
 package com.xl.xl_base.base
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.xl.xl_base.api.Response
-import com.xl.xl_base.tool.ktx.State
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

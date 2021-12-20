@@ -24,11 +24,14 @@ class MviViewModel @Inject constructor(private var repository: MviRepository) :
     }
 
     fun getArtic(page: Int) {
+        setState {
+            copy(loading = true)
+        }
         launchFlow<ArticleBean> {
             loader { repository.getArtic(page) }
             action {
                 setState {
-                    copy(articleBean = it)
+                    copy(loading = false, articleBean = it)
                 }
             }
         }

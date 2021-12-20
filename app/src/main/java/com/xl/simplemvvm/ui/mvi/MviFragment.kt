@@ -68,17 +68,8 @@ class MviFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infla
         mainViewModel.state.collectHandlerFlow(this) {
             viewBinding.smartRefresh.finishRefresh()
             viewBinding.smartRefresh.finishLoadMore()
-            if (!it.refresh) {
-                it.banners.notEmpty {
-                    val items = mutableListOf<TitleItem>()
-                    it.forEach { article ->
-                        items.add(TitleItem(article))
-                    }
-                    it.size.let { it1 ->
-                        recyclerAdapter.submitList(it1, items, page == 0)
-                    }
-                }
 
+            if (!it.refresh) {
                 it.articleBean?.let {
                     val items = mutableListOf<ArticleItem>()
                     it.datas.forEach { article ->
