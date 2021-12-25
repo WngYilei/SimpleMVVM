@@ -13,8 +13,10 @@ class ArticleItem(val data: Article) : ItemCell {
 
     override fun itemId(): String = "TitleItem"
     override fun itemContent(): String = "TitleItem"
-    override fun onCreateViewHolder(itemView: View, support: RecyclerSupport): RecyclerVH =
-        TitleHoller(itemView, support)
+    override fun onCreateViewHolder(itemView: View, support: RecyclerSupport): RecyclerVH {
+
+       return TitleHoller(itemView, support)
+    }
 
     class TitleHoller(itemView: View, support: RecyclerSupport) : RecyclerVH(itemView, support) {
         override fun bind(itemCell: ItemCell, payloads: MutableList<Any>) {

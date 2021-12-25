@@ -1,4 +1,4 @@
-package com.xl.simplemvvm.ui.mvi
+package com.xl.xl_base.tool.ktx
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.flow.StateFlow

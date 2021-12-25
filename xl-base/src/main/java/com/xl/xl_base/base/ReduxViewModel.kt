@@ -15,7 +15,6 @@ abstract class ReduxViewModel<S>(initialState: S) : ViewModel() {
     val state: StateFlow<S>
         get() = _state
 
-
     fun currentState(): S = _state.value
 
     private val stateMutex = Mutex()

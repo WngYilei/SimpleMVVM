@@ -1,5 +1,6 @@
 package com.xl.xl_base.adapter.recycler
 
+import android.util.Log
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.xl.xl_base.adapter.DiffConfig
 import com.xl.xl_base.adapter.item.DefaultEmptyCell
 import com.xl.xl_base.adapter.item.DefaultLoadingCell
 import com.xl.xl_base.adapter.item.ItemCell
+import java.util.*
 
 /**
  * 适配器（适用详情页面）
@@ -40,6 +42,7 @@ class StableAdapter(private val support: RecyclerSupport) : RecyclerView.Adapter
         }
         throw IllegalArgumentException("viewType not found")
     }
+
 
     override fun getItemCount() = differ.currentList.size
 
@@ -137,4 +140,5 @@ class StableAdapter(private val support: RecyclerSupport) : RecyclerView.Adapter
         sparseArray.clear()
         differ.submitList(temp, callback)
     }
+
 }
