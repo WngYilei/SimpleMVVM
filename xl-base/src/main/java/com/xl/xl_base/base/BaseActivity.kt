@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+
 /**
  * Activity基类
  */
-abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInflater) -> T) : AppCompatActivity() {
+abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInflater) -> T) :
+    AppCompatActivity() {
 
     protected lateinit var viewBinding: T
 

@@ -30,7 +30,7 @@ abstract class ReduxViewModel<S>(initialState: S) : ViewModel() {
     }
 
     private val _error = MutableStateFlow("")
-    private val error: StateFlow<String>
+    public val error: StateFlow<String>
         get() = _error
 
 

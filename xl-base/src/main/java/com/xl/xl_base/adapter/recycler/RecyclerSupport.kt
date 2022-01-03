@@ -58,7 +58,6 @@ open class RecyclerSupport(val pageCount: Int = 10) {
     var detailClickCallback: ((position: Int, type: Int, value: Any?) -> Unit)? = null
 
     infix fun onSimpleCallback(block: (position: Int) -> Unit) {
-        Log.e("TAG", "onSimpleCallback: ")
         simpleCallback = block
     }
 

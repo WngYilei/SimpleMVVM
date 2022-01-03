@@ -7,7 +7,6 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.roundToInt
 
-@Suppress("UNUSED")
 object DateUtil {
 
     /**
@@ -34,7 +33,6 @@ object DateUtil {
     fun format(timestamp: Long?, pattern: String): String = when {
         timestamp == null || timestamp <= 0 -> ""
         else -> SimpleDateFormat(pattern, Locale.CHINA).format(Date(timestamp))
-
     }
 
     /**
