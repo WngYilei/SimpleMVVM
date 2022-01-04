@@ -1,10 +1,8 @@
-package com.xl.openeye.utils
+package com.xl.xl_base.tool.util
 
 import android.os.Build
 import android.os.Environment
 import android.text.TextUtils
-import com.xl.openeye.utils.RomUtils
-import com.xl.openeye.utils.RomUtils.AvailableRomType
 import java.io.File
 import java.io.FileInputStream
 import java.lang.Exception

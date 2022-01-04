@@ -1,6 +1,4 @@
-package com.xl.openeye.utils
-
-import android.util.Log
+package com.xl.xl_base.tool.util
 
 object StringUtils {
 

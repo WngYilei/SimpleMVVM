@@ -1,11 +1,10 @@
-package com.xl.openeye.utils
+package com.xl.xl_base.tool.util
 
 import android.app.Activity
 import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.WindowManager
-import androidx.fragment.app.FragmentActivity
 import java.lang.Exception
 
 object StatusBarUtils {

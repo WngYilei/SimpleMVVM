@@ -1,8 +1,6 @@
-package com.xl.openeye.utils
+package com.xl.xl_base.tool.util
 
 import android.R
-import com.xl.openeye.utils.SystemBarTintManager
-import com.xl.openeye.utils.SystemBarTintManager.SystemBarConfig
 import android.annotation.TargetApi
 import android.util.TypedValue
 import android.annotation.SuppressLint
@@ -11,7 +9,6 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.DisplayMetrics
-import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.view.*
