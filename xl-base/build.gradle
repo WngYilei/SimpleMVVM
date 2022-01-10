@@ -95,7 +95,7 @@ def GROUP = 'com.xl'
 def NEXUS_USERNAME = 'admin'
 def NEXUS_PASSWORD = 'xiaolei521'
 def NEXUS_DESC = 'base'
-def NEXUS_VERSION = "1.1.2"
+def NEXUS_VERSION = "1.1.5"
 
 afterEvaluate {
 

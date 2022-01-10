@@ -57,6 +57,8 @@ open class RecyclerSupport(val pageCount: Int = 10) {
      */
     var detailClickCallback: ((position: Int, type: Int, value: Any?) -> Unit)? = null
 
+    var detailViewDataClickCallback : ((position: Int, type: Int,view:View, value: Any?) -> Unit)? = null
+
     infix fun onSimpleCallback(block: (position: Int) -> Unit) {
         simpleCallback = block
     }
@@ -84,6 +86,10 @@ open class RecyclerSupport(val pageCount: Int = 10) {
 
     infix fun onDetailClickCallback(block: (position: Int, type: Int, value: Any?) -> Unit) {
         detailClickCallback = block
+    }
+
+    infix fun onDetailViewDataClickCallback(block: (position: Int, type: Int,view:View, value: Any?) -> Unit) {
+        detailViewDataClickCallback = block
     }
 }
 
