@@ -1,6 +1,5 @@
-package com.xl.openeye.utils
+package com.xl.xl_base.tool.ktx
 
-import android.R
 import android.app.Activity
 import android.content.Intent
 import android.widget.ImageView

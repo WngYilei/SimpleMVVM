@@ -23,4 +23,5 @@ abstract class BaseFragment<T : ViewBinding>(val inflater: (inflater: LayoutInfl
         onFragmentCreate(savedInstanceState)
         return viewBinding.root
     }
+
 }

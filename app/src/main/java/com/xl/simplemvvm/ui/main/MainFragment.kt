@@ -61,6 +61,10 @@ class MainFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infl
         }
 
 
+
+
+
+
         mainViewModel.state.collectHandlerFlow(this) {
             loading {
                 Log.e(TAG, "loading: ")
@@ -96,10 +100,6 @@ class MainFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infl
             }
         }
 
-
-        viewBinding.btn.setOnClickListener {
-            startActivity(Intent(context, ComposeActivity::class.java))
-        }
     }
 
 }

@@ -3,12 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_card.xml" value="0.186" />
+        <entry key="app/src/main/res/layout/home_fragment.xml" value="0.3967391304347826" />
+        <entry key="app/src/main/res/layout/item_banner.xml" value="0.3967391304347826" />
+        <entry key="app/src/main/res/layout/item_home_video.xml" value="0.3967391304347826" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.39166666666666666" />
+        <entry key="app/src/main/res/layout/item_text.xml" value="0.39166666666666666" />
+        <entry key="app/src/main/res/layout/item_textheader.xml" value="0.3967391304347826" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.1" />
         <entry key="xl-base/src/main/res/layout/item_layout.xml" value="0.39166666666666666" />
         <entry key="xl-base/src/main/res/layout/lottie_footer.xml" value="0.39166666666666666" />
         <entry key="xl-base/src/main/res/layout/lottie_header.xml" value="0.39166666666666666" />
         <entry key="xl-base/src/main/res/layout/lottie_zf_footer.xml" value="0.39166666666666666" />
+        <entry key="xl-base/src/main/res/layout/view_me_item.xml" value="0.45063405797101447" />
       </map>
     </option>
   </component>

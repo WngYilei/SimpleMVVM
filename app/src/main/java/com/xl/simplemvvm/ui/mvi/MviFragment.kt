@@ -70,11 +70,11 @@ class MviFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infla
 
         recyclerAdapter.submitList(1, arrayListOf(TextItem("这是第一个item"), TextItem("这是第二个item")))
         mainViewModel.state.collectHandlerFlow(this) {
-
-            viewBinding.smartRefresh.finishRefresh()
-            viewBinding.smartRefresh.finishLoadMore()
-
             it.articleBean?.let {
+                viewBinding.smartRefresh.finishRefresh()
+                viewBinding.smartRefresh.finishLoadMore()
+
+
                 val items = mutableListOf<ItemCell>()
                 it.datas.forEach { article ->
                     items.add(ArticleItem(article))
@@ -85,12 +85,6 @@ class MviFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infla
             }
         }
 
-
-
-        viewBinding.btn.setOnClickListener {
-//            mainViewModel.getArtic(0)
-            startActivity(Intent(context, ComposeActivity::class.java))
-        }
 
     }
 

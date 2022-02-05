@@ -11,4 +11,9 @@ class MviRepository @Inject constructor(private val service: WanApi) : BaseRepos
 
     suspend fun getArtic(page: Int) = service.getArticle(pageNo = page)
 
+
+    suspend fun getHome(index: String) = service.getHomeData(index)
+
+    suspend fun getNextHome(date: String) = service.getNextHomePage(date)
+
 }

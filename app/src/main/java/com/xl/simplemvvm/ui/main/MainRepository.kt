@@ -1,5 +1,6 @@
 package com.xl.simplemvvm.ui.main
 
+import androidx.lifecycle.MutableLiveData
 import com.xl.simplemvvm.net.WanApi
 import com.xl.xl_base.base.BaseRepository
 import javax.inject.Inject
