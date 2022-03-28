@@ -3,9 +3,13 @@ package com.xl.simplemvvm.ui.mvi
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.xl.simplemvvm.R
 import com.xl.simplemvvm.databinding.HomeFragmentBinding
 import com.xl.simplemvvm.item.BannerItem
 import com.xl.simplemvvm.item.HomeVideoItem
@@ -33,11 +37,16 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
     private lateinit var bannerAdapter: StableAdapter
     private lateinit var recyclerAdapter: StableAdapter
     private var date: String = ""
+
+
     override fun onFragmentCreate(savedInstanceState: Bundle?) {
-
-
-
         viewBinding.smartRefresh.autoRefresh()
+
+        viewBinding.root.initialize(0, viewBinding.root.bottom, R.id.moveButton)
+
+        viewBinding.root.setDragViewClickCallBack {
+            Log.e("TAG", "onFragmentCreate: ")
+        }
 
         viewBinding.smartRefresh.onSmartRefreshCallback {
             onRefresh {
@@ -87,8 +96,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
                 it.issueList[0].itemList.forEach {
                     if (it.type == "video") {
                         items.add(HomeVideoItem(it.data))
-                    }
-                    else if (it.type == "textHeader") {
+                    } else if (it.type == "textHeader") {
                         items.add(TextHeaderItem(it.data.text))
                     }
                 }
@@ -97,6 +105,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
                 }
             }
         }
+
 
     }
 
