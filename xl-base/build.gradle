@@ -175,7 +175,7 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 groupId = 'com.github.WngYilei'
-                artifactId = 'xl-base'
+                artifactId = 'SimpleMVVM'
                 version = '1.0.2'
             }
         }
