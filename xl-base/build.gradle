@@ -144,3 +144,19 @@ afterEvaluate {
         }
     }
 }
+
+
+group = 'com.gitub.WngYilei'
+version = '1.0'
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                groupId = 'com.github.WngYilei'
+                artifactId = 'xl-base'
+                version = '1.0.0'
+            }
+        }
+    }
+}

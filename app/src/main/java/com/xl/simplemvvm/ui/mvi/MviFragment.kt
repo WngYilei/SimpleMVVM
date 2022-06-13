@@ -32,7 +32,6 @@ class MviFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infla
     private lateinit var stableAdapter: StableAdapter
     private lateinit var recyclerAdapter: RecyclerAdapter
     override fun onFragmentCreate(savedInstanceState: Bundle?) {
-
         viewBinding.smartRefresh.autoRefresh()
 
         viewBinding.smartRefresh.onSmartRefreshCallback {

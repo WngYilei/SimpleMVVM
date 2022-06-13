@@ -62,9 +62,6 @@ class MainFragment : BaseFragment<MainFragmentBinding>(MainFragmentBinding::infl
 
 
 
-
-
-
         mainViewModel.state.collectHandlerFlow(this) {
             loading {
                 Log.e(TAG, "loading: ")
