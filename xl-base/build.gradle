@@ -146,41 +146,14 @@ def NEXUS_VERSION = "1.1.7"
 //}
 
 
-group = 'com.gitub.WngYilei'
-version = '1.0.2'
 afterEvaluate {
-    task androidJavadocs(type: Javadoc) {
-        options.encoding = "UTF-8"
-        source = android.sourceSets.main.java.srcDirs
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    }
-    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-        classifier = 'javadoc'
-        from androidJavadocs.destinationDir
-    }
-
-    task androidSourcesJar(type: Jar) {
-        classifier = 'sources'
-        from android.sourceSets.main.java.sourceFiles
-    }
-
-    tasks.withType(Javadoc) {
-        options.addStringOption('Xdoclint:none', '-quiet')
-        options.addStringOption('encoding', 'UTF-8')
-    }
-    artifacts {
-        archives androidSourcesJar
-        archives androidJavadocsJar
-    }
-
-
     publishing {
         publications {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 groupId = 'com.github.WngYilei'
-                artifactId = 'SimpleMVVM'
-                version = '1.0.2'
+                artifactId = 'base'
+                version = '1.0.3'
             }
         }
     }
